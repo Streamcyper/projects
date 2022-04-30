@@ -6,6 +6,7 @@ LOGFILE=/opt/scripts/net-tester.log
 logmessage(){
     message=$1
     echo [ `date "+%y-%m-%d - %H:%M"` ] "$message" >> $LOGFILE
+    tail -288 $LOGFILE | sponge $LOGFILE
 }
 
 have_connection(){
@@ -49,4 +50,3 @@ else
     restart_radarr
     exit 2
 fi
-tail -288 $LOGFILE | sponge $LOGFILE > $LOGFILE
