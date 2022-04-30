@@ -1,5 +1,6 @@
 #! /bin/bash
 TRY=0
+APIKEYFILE=/opt/scripts/api.key
 LOGFILE=/opt/scripts/net-tester.log
 
 logmessage(){
@@ -17,7 +18,8 @@ restart_vpnservice(){
 }
 
 restart_radarr(){
-    curl -X POST "http://localhost:7878/api/v3/indexer/testall" -H  "accept: */*" -H  "X-Api-Key: d75596ad85b548a9b6f6deac4fb5103b" -d ""
+    apikey=`cat $APIKEYFILE`
+    curl -X POST "http://localhost:7878/api/v3/indexer/testall" -H  "accept: */*" -H  "X-Api-Key: $apikey" -d ""
 }
 
 if have_connection 
